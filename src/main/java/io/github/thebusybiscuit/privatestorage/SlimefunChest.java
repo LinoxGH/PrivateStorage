@@ -75,7 +75,7 @@ public class SlimefunChest extends SlimefunItem {
             public boolean onBreak(Player p, Block b, SlimefunItem item, UnregisterReason reason) {
                 boolean allow = true;
                 
-                if (reason.equals(UnregisterReason.PLAYER_BREAK)) {
+                if (reason == UnregisterReason.PLAYER_BREAK) {
                     if (p.hasPermission("PrivateStorage.bypass")) { 
                         allow = true;
                     }
@@ -83,7 +83,7 @@ public class SlimefunChest extends SlimefunItem {
                         allow = BlockStorage.getLocationInfo(b.getLocation(), "owner").equals(p.getUniqueId().toString());
                     }
                 }
-                else if (reason.equals(UnregisterReason.EXPLODE)) {
+                else if (reason == UnregisterReason.EXPLODE) {
                     allow = canExplode;
                 }
                 
@@ -97,7 +97,7 @@ public class SlimefunChest extends SlimefunItem {
                     }
                 }
                 
-                return allow;
+                return !allow;
             }
         });
     }
