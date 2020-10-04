@@ -78,6 +78,7 @@ public class SlimefunChest extends SlimefunItem {
                 if (reason.equals(UnregisterReason.PLAYER_BREAK)) {
                     if (p.hasPermission("PrivateStorage.bypass")) { 
                         allow = true;
+                    }
                     else {
                         allow = BlockStorage.getLocationInfo(b.getLocation(), "owner").equals(p.getUniqueId().toString());
                     }
