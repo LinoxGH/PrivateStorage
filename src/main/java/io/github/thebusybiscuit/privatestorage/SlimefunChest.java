@@ -76,12 +76,12 @@ public class SlimefunChest extends SlimefunItem {
         
         registerBlockHandler(getID(), (p, b, stack, reason) -> {
         
-            if ((reason == UnregisterReason.EXPLODE && !canExplode) &&
-                    reason != UnregisterReason.PLAYER_BREAK) {
+            if (reason == UnregisterReason.EXPLODE && !canExplode) {
                 return false;
             }
         
-            if (!p.hasPermission("PrivateStorage.bypass") && 
+            if (reason == UnregisterReason.PLAYER_BREAK && 
+                    !p.hasPermission("PrivateStorage.bypass") && 
                     !BlockStorage.getLocationInfo(b.getLocation(), "owner").equals(p.getUniqueId().toString())) {
                     
                 return false;
