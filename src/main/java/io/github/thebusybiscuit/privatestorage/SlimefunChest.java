@@ -89,8 +89,10 @@ public class SlimefunChest extends SlimefunItem {
             
             BlockMenu inv = BlockStorage.getInventory(b);
 
-            if (inv != null) {
-                inv.dropItems(b.getLocation(), SLOTS);
+            for (int slot = 0; slot < size; slot++) {
+                if (inv.getItemInSlot(slot) != null) {
+                    b.getWorld().dropItemNaturally(b.getLocation(), inv.getItemInSlot(slot));
+                }
             }
 
             return true;
